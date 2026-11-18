@@ -20,8 +20,55 @@ description: "Meet the researchers behind the Gravatars Group."
 
 ## Group members
 
-*The group roster is being prepared. Individual profiles will be added here.*
+<section class="roster-section">
+  <h3>Postdocs</h3>
+  <div class="roster-grid">
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Debtroy Das"><span>DD</span></div><h4>Debtroy Das</h4></article>
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Kiet Pham"><span>KP</span></div><h4>Kiet Pham</h4></article>
+  </div>
+</section>
 
-## Collaborators
+<section class="roster-section">
+  <h3>PhD Students</h3>
+  <div class="roster-grid">
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Charchit Kumar Sethi"><span>CK</span></div><h4>Charchit Kumar Sethi</h4></article>
+  </div>
+</section>
 
-The Gravatars Group works with researchers across gravitational-wave astronomy, astrophysics, and fundamental physics.
+<section class="roster-section">
+  <h3>Research Students</h3>
+  <div class="roster-grid">
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Ayush Hazarika"><span>AH</span></div><h4>Ayush Hazarika</h4></article>
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Hang Yang"><span>HY</span></div><h4>Hang Yang</h4></article>
+  </div>
+</section>
+
+<section class="roster-section">
+  <h3>Interns</h3>
+  <div class="roster-grid">
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Jiahang Wang"><span>JW</span></div><h4>Jiahang Wang</h4></article>
+  </div>
+</section>
+
+<section class="roster-section">
+  <h3>Past Visiting Scientists</h3>
+  <div class="roster-grid">
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Veronica Vazquez-Aceves"><span>VV</span></div><h4>Veronica Vazquez-Aceves</h4></article>
+  </div>
+</section>
+
+## Visitors
+
+<ul class="visitor-list">
+  <li>A Gopakumar (Gopu)</li>
+  <li>Andrew Cheek</li>
+  <li>Avi Vaypeyi</li>
+  <li>Benjamin Steltner</li>
+  <li>Evan Hall</li>
+  <li>Jing Ming</li>
+  <li>Maria Alessandra Papa</li>
+  <li>Naresh Patra</li>
+  <li>Reinhard Prix</li>
+  <li>Siyuan Chen</li>
+  <li>Swetha Bhagwat</li>
+</ul>
