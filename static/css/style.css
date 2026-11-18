@@ -65,3 +65,11 @@ footer{background:#080d1a}
 /* Public email links on people page */
 .member-email{display:block;margin-top:6px;font-size:12px;line-height:1.5;overflow-wrap:anywhere;color:#aebfff!important}
 .profile-email{margin:8px 0 0;font-size:14px;overflow-wrap:anywhere}
+
+/* Slowly rotating neutron-star illustration in the homepage hero.
+   A moving surface texture gives a visible axial spin while the illumination stays fixed. */
+.orbit-core{overflow:hidden;isolation:isolate}
+.orbit-core::before{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(90deg,transparent 0 15px,rgba(174,205,255,.24) 20px 25px,rgba(30,48,112,.3) 32px 42px,transparent 50px 64px);background-size:128px 100%;animation:neutron-star-spin 5s linear infinite;mix-blend-mode:screen;mask-image:radial-gradient(ellipse at center,#000 0 54%,transparent 76%)}
+.orbit-core::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 33% 27%,rgba(230,248,255,.32),transparent 34%),linear-gradient(90deg,rgba(6,11,33,.45),transparent 28% 64%,rgba(3,7,24,.7));pointer-events:none}
+@keyframes neutron-star-spin{from{background-position:0 0}to{background-position:128px 0}}
+@media(prefers-reduced-motion:reduce){.orbit-core::before{animation:none}}
