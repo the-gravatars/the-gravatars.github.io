@@ -37,3 +37,15 @@ footer{background:#080d1a}
 .study-label{display:inline-block;font-family:'Space Grotesk',sans-serif;font-size:clamp(17px,2vw,23px);font-weight:700;letter-spacing:.095em;color:#c5d0ff;border-left:4px solid #9caaff;padding-left:15px;line-height:1.35}
 .hero-actions{flex-wrap:wrap}
 @media(max-width:650px){.hero-actions{flex-direction:row;align-items:stretch}.hero-actions .button{padding:13px 15px;gap:8px;font-size:12px}.study-label{font-size:18px}}
+
+/* Group leader biography */
+.profile{display:grid;grid-template-columns:minmax(220px,330px) minmax(0,1fr);gap:clamp(28px,5vw,70px);align-items:start;margin-bottom:76px}
+.profile-photo-wrap{border-radius:12px;overflow:hidden;background:#182441;border:1px solid #344468;aspect-ratio:1/1}
+.profile-photo{width:100%;height:100%;object-fit:cover;object-position:center 32%;display:block}
+.profile-role{color:#a6b7f9;font-size:12px;font-weight:700;letter-spacing:.15em}
+.profile-copy h2{font-size:clamp(32px,4vw,48px);margin:10px 0 4px;letter-spacing:-.045em}
+.profile-position{font-weight:600;color:#b5c3f6!important;margin-top:0}
+.profile-links{display:flex;gap:18px;margin-top:20px}
+.profile-links a{border:1px solid #526493;border-radius:6px;padding:12px 17px;font-weight:700}
+.profile-links a:hover{background:#1b2a4e}
+@media(max-width:700px){.profile{grid-template-columns:1fr}.profile-photo-wrap{max-width:360px}}
