@@ -49,3 +49,15 @@ footer{background:#080d1a}
 .profile-links a{border:1px solid #526493;border-radius:6px;padding:12px 17px;font-weight:700}
 .profile-links a:hover{background:#1b2a4e}
 @media(max-width:700px){.profile{grid-template-columns:1fr}.profile-photo-wrap{max-width:360px}}
+
+/* People page: compact horizontal portrait placeholders and visitor list */
+.roster-section{margin:35px 0 45px}
+.roster-section h3{font-size:22px;margin:0 0 20px}
+.roster-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:22px}
+.member-card{min-width:0}
+.member-placeholder{aspect-ratio:1/1;display:grid;place-items:center;border-radius:10px;border:1px solid #40547c;background:radial-gradient(circle at 30% 25%,#354a77,#182440 72%);color:#aabaff}
+.member-placeholder span{font:600 clamp(32px,5vw,54px) 'Space Grotesk',sans-serif;letter-spacing:-.05em}
+.member-card h4{font-size:15px;line-height:1.45;margin:12px 0 0;color:#eef1ff}
+.visitor-list{columns:2;column-gap:44px;padding-left:20px;color:#b6c1da;line-height:2}
+.visitor-list li{break-inside:avoid}
+@media(max-width:650px){.roster-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.visitor-list{columns:1}}
