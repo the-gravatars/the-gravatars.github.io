@@ -1,80 +1,125 @@
-/* Rapidly rotating, equatorially non-axisymmetric neutron star.
-   Schematic CW emission at twice the spin frequency; deformation exaggerated for visibility. */
+/* Animated, scientifically inspired pulsating neutron star and schematic GW strain. */
 (() => {
- const canvas=document.getElementById('neutron-star-canvas');if(!canvas)return;
- const ctx=canvas.getContext('2d');if(!ctx)return;
- const N=760,C=380,TAU=Math.PI*2;
- canvas.width=canvas.height=N;
- const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
- let running=true;
- function draw(ms){
-  if(!running)return;
-  const t=reduce.matches?0:ms/1000;
-  const spin=t*2.9,phase=2*spin;
-  ctx.clearRect(0,0,N,N);ctx.save();ctx.translate(C,C);
-  // Weak quadrupolar strain illustrated by smoothly distorted wavefronts.
-  // Wave phase rotates at twice the stellar spin rate.
-  for(let k=0;k<7;k++){
-   const distance=165+k*39;
-   const delay=k*.64;
-   ctx.beginPath();
-   for(let j=0;j<=240;j++){
-    const a=j/240*TAU;
-    const r=distance+6.5*Math.cos(2*a-phase+delay);
-    const x=r*Math.cos(a),y=.77*r*Math.sin(a);
-    j?ctx.lineTo(x,y):ctx.moveTo(x,y);
-   }
-   ctx.closePath();
-   ctx.strokeStyle='rgba(118,178,255,'+(.29-k*.028)+')';
-   ctx.lineWidth=1.25;ctx.stroke();
+  const canvas = document.getElementById('neutron-star-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const W = 760, H = 760, cx = 380, cy = 378, R = 119;
+  let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', e => { reduced = e.matches; });
+  let start = performance.now();
+  const TAU = Math.PI * 2;
+  function frame(now) {
+    const t = reduced ? 0 : (now - start) / 1000;
+    ctx.clearRect(0, 0, W, H);
+    // Subtle warped-coordinate contours: a visualization, not a numerical GR solution.
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(-0.37);
+    for (let k = 0; k < 8; k++) {
+      const a = 168 + k * 36;
+      const phase = k * 0.48 - t * 1.65;
+      ctx.beginPath();
+      for (let j = 0; j <= 240; j++) {
+        const q = j / 240 * TAU;
+        const strain = 5.5 * Math.sin(2 * q - phase) * Math.exp(-k * 0.17);
+        const x = (a + strain) * Math.cos(q);
+        const y = (a * .73 - strain) * Math.sin(q);
+        if (!j) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.strokeStyle = 'rgba(124,167,255,' + (0.24 - k * .019) + ')';
+      ctx.lineWidth = k < 2 ? 1.6 : 1;
+      ctx.stroke();
+    }
+    // Propagating quadrupolar wavefronts.
+    for (let k = 0; k < 3; k++) {
+      const cycle = ((t * 0.22 + k / 3) % 1);
+      const a = 155 + cycle * 220;
+      ctx.beginPath();
+      for (let j = 0; j <= 240; j++) {
+        const q = j / 240 * TAU;
+        const mod = 8 * Math.cos(2 * q - t * 2);
+        const x = (a + mod) * Math.cos(q);
+        const y = (a * .73 - mod) * Math.sin(q);
+        if (!j) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.strokeStyle = 'rgba(133,192,255,' + (0.2 * (1 - cycle)) + ')';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+    ctx.restore();
+    // Extended atmosphere / magnetic glow.
+    let glow = ctx.createRadialGradient(cx, cy, 75, cx, cy, 240);
+    glow.addColorStop(0, 'rgba(71,148,248,.27)');
+    glow.addColorStop(.45, 'rgba(55,99,213,.10)');
+    glow.addColorStop(1, 'rgba(35,69,150,0)');
+    ctx.fillStyle = glow;
+    ctx.beginPath(); ctx.arc(cx, cy, 240, 0, TAU); ctx.fill();
+    // Pulsar beams from the magnetic poles, inclined to the rotation axis.
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(-.56 + .17 * Math.sin(t * 1.5));
+    for (const sign of [-1, 1]) {
+      const beam = ctx.createLinearGradient(0, sign * 68, 0, sign * 330);
+      beam.addColorStop(0, 'rgba(133,221,255,.30)');
+      beam.addColorStop(1, 'rgba(104,175,255,0)');
+      ctx.fillStyle = beam;
+      ctx.beginPath(); ctx.moveTo(-28, sign * 70); ctx.lineTo(-90, sign * 335); ctx.lineTo(90, sign * 335); ctx.lineTo(28, sign * 70); ctx.closePath(); ctx.fill();
+    }
+    ctx.restore();
+    // The star: atmospheric limb, luminous surface, gravitational limb darkening.
+    const pulse = 1 + .017 * Math.sin(t * 4.6);
+    ctx.save(); ctx.translate(cx, cy); ctx.scale(pulse, pulse);
+    ctx.beginPath(); ctx.arc(0, 0, R, 0, TAU); ctx.clip();
+    const surface = ctx.createRadialGradient(-42, -48, 7, 16, 12, 157);
+    surface.addColorStop(0, '#d5f4ff');
+    surface.addColorStop(.21, '#8ed1f0');
+    surface.addColorStop(.43, '#4e8cc5');
+    surface.addColorStop(.73, '#1b437f');
+    surface.addColorStop(1, '#050d2d');
+    ctx.fillStyle = surface; ctx.fillRect(-R,-R,2*R,2*R);
+    // Rotating surface bands, with curvature from projected spherical coordinates.
+    const spin = t * 1.25;
+    for (let band = -8; band <= 8; band++) {
+      const lat = band / 9 * Math.PI / 2;
+      ctx.beginPath();
+      for (let j = 0; j <= 120; j++) {
+        const longitude = -Math.PI/2 + j/120 * Math.PI;
+        const x = R * Math.cos(lat) * Math.sin(longitude);
+        const y = R * Math.sin(lat) * .86 + 8 * Math.sin(longitude * 3 + spin + band) * Math.cos(lat);
+        if (!j) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      }
+      ctx.strokeStyle = band % 2 ? 'rgba(7,38,95,.20)' : 'rgba(205,241,255,.18)';
+      ctx.lineWidth = 4 + 2 * Math.sin(spin + band);
+      ctx.stroke();
+    }
+    // Advecting bright and dark plasma structures across the visible hemisphere.
+    for (let i = 0; i < 26; i++) {
+      const lat = Math.sin(i * 2.41) * 1.18;
+      const lon = spin + i * 2.399;
+      const front = Math.cos(lon);
+      if (front < 0) continue;
+      const x = R * Math.cos(lat) * Math.sin(lon);
+      const y = R * Math.sin(lat) * .9;
+      const size = (4 + (i % 5) * 2) * (.3 + front * .7);
+      ctx.beginPath(); ctx.ellipse(x,y,size,size*.5,-.4,0,TAU);
+      ctx.fillStyle = i%3===0 ? 'rgba(219,248,255,.23)' : 'rgba(8,38,90,.19)';
+      ctx.fill();
+    }
+    // Fixed illumination keeps the rotating texture legible.
+    const shade = ctx.createLinearGradient(-R,-R,R,R);
+    shade.addColorStop(0,'rgba(229,250,255,.16)');
+    shade.addColorStop(.5,'rgba(5,17,55,0)');
+    shade.addColorStop(1,'rgba(1,5,23,.63)');
+    ctx.fillStyle=shade; ctx.fillRect(-R,-R,2*R,2*R);
+    ctx.restore();
+    ctx.beginPath();ctx.arc(cx,cy,R*pulse,0,TAU);
+    ctx.strokeStyle='rgba(160,222,255,.46)';ctx.lineWidth=1.5;ctx.stroke();
+    if (!reduced) requestAnimationFrame(frame);
   }
-  // Smooth radial GW fronts, avoiding petal-shaped magnetic-field loops.
-  for(let k=0;k<3;k++){
-   const u=(t*.27+k/3)%1,r=155+u*240;
-   ctx.beginPath();
-   for(let j=0;j<=180;j++){
-    const a=j/180*TAU;
-    const radius=r+4.5*Math.cos(2*a-phase+u*5);
-    j?ctx.lineTo(radius*Math.cos(a),.77*radius*Math.sin(a)):ctx.moveTo(radius*Math.cos(a),.77*radius*Math.sin(a));
-   }
-   ctx.closePath();ctx.strokeStyle='rgba(151,202,255,'+(.2*(1-u))+')';ctx.lineWidth=1.5;ctx.stroke();
-  }
-  // Subtle blue halo around a compact, hot neutron star.
-  const halo=ctx.createRadialGradient(0,0,65,0,0,215);
-  halo.addColorStop(0,'rgba(110,197,255,.25)');
-  halo.addColorStop(.55,'rgba(63,120,221,.09)');
-  halo.addColorStop(1,'rgba(20,40,110,0)');
-  ctx.fillStyle=halo;ctx.beginPath();ctx.arc(0,0,215,0,TAU);ctx.fill();
-  // Triaxial equatorial shape: a!=b. Its projected ellipticity oscillates at 2 f_spin.
-  // Keep the angular size fixed; no radial pulsation is implied by CW emission.
-  const major=119,minor=104;
-  const rx=Math.sqrt(major*major*Math.cos(spin)**2+minor*minor*Math.sin(spin)**2);
-  const ry=Math.sqrt(major*major*Math.sin(spin)**2+minor*minor*Math.cos(spin)**2);
-  const tilt=.12*Math.sin(phase);
-  ctx.save();ctx.rotate(tilt);
-  ctx.beginPath();ctx.ellipse(0,0,rx,ry,0,0,TAU);ctx.clip();
-  const light=ctx.createRadialGradient(-34,-39,6,15,17,148);
-  light.addColorStop(0,'#e5f7ff');light.addColorStop(.24,'#99cdec');
-  light.addColorStop(.53,'#4c83bd');light.addColorStop(.78,'#1b437c');
-  light.addColorStop(1,'#07112f');
-  ctx.fillStyle=light;ctx.fillRect(-135,-135,270,270);
-  // Very faint surface structure rotates with the crust; not planet-like bands.
-  for(let i=0;i<12;i++){
-   const lon=spin+i*2.399,lat=Math.sin(i*1.73)*.75;
-   if(Math.cos(lon)<0)continue;
-   const x=rx*.8*Math.sin(lon)*Math.cos(lat),y=ry*.8*Math.sin(lat);
-   const g=ctx.createRadialGradient(x,y,0,x,y,11+i%3*5);
-   g.addColorStop(0,i%2?'rgba(210,240,255,.16)':'rgba(12,48,105,.18)');
-   g.addColorStop(1,'rgba(30,65,130,0)');
-   ctx.fillStyle=g;ctx.fillRect(x-30,y-30,60,60);
-  }
-  ctx.restore();
-  ctx.beginPath();ctx.ellipse(0,0,rx,ry,tilt,0,TAU);
-  ctx.strokeStyle='rgba(170,222,255,.52)';ctx.lineWidth=1.5;ctx.stroke();
-  ctx.restore();
-  if(!reduce.matches)requestAnimationFrame(draw);
- }
- reduce.addEventListener('change',()=>{if(reduce.matches)draw(0);else if(running)requestAnimationFrame(draw)});
- document.addEventListener('visibilitychange',()=>{running=!document.hidden;if(running)requestAnimationFrame(draw)});
- requestAnimationFrame(draw);
+  canvas.width=W; canvas.height=H;
+  requestAnimationFrame(frame);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && !reduced) requestAnimationFrame(frame); });
 })();
