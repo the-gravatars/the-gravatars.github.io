@@ -79,3 +79,7 @@ footer{background:#080d1a}
 .neutron-star-art canvas{display:block;width:100%;height:100%;filter:drop-shadow(0 0 15px rgba(69,133,227,.15))}
 @media(max-width:900px){.neutron-star-art{width:560px;height:560px;right:-245px;top:160px;opacity:.65}}
 @media(max-width:650px){.neutron-star-art{width:450px;height:450px;right:-270px;top:225px;opacity:.43}}
+
+/* Larger, more readable primary navigation */
+.nav-links a{font-size:16px;font-weight:600;letter-spacing:.01em}
+@media(max-width:650px){.nav-links a{font-size:18px}}
