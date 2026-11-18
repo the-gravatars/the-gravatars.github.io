@@ -39,7 +39,7 @@ description: "Meet the researchers behind the Gravatars Group."
 <section class="roster-section">
   <h3>Research Students</h3>
   <div class="roster-grid">
-    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Ayush Hazarika"><span>AH</span></div><h4>Ayush Hazarika</h4><a class="member-email" href="mailto:ayush.hazarika@ligo.org">ayush.hazarika@ligo.org</a></article>
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Ayush Hazarika"><span>AH</span></div><h4>Ayush Hazarika</h4><a class="member-email" href="mailto:hazarika4research@mails.ucas.ac.cn">hazarika4research@mails.ucas.ac.cn</a></article>
     <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Hang Yang"><span>HY</span></div><h4>Hang Yang</h4></article>
   </div>
 </section>
