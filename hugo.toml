@@ -1,0 +1,9 @@
+baseURL = 'https://the-gravatars.github.io/'
+languageCode = 'en-us'
+title = 'Gravatars Group'
+[params]
+  description = 'Exploring gravity, gravitational waves, and the unknown.'
+  institution = 'International Centre for Theoretical Physics Asia-Pacific · University of Chinese Academy of Sciences'
+  location = 'Beijing, China'
+[markup.goldmark.renderer]
+  unsafe = true
