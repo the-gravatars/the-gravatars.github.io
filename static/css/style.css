@@ -32,3 +32,8 @@ footer{background:#080d1a}
 .page-content .entry:hover{border-color:#8496e6}
 .entry p{color:#b6c1da}
 ::selection{background:#667bcd;color:white}
+
+/* Simplified homepage: one focused research section */
+.study-label{display:inline-block;font-family:'Space Grotesk',sans-serif;font-size:clamp(17px,2vw,23px);font-weight:700;letter-spacing:.095em;color:#c5d0ff;border-left:4px solid #9caaff;padding-left:15px;line-height:1.35}
+.hero-actions{flex-wrap:wrap}
+@media(max-width:650px){.hero-actions{flex-direction:row;align-items:stretch}.hero-actions .button{padding:13px 15px;gap:8px;font-size:12px}.study-label{font-size:18px}}
