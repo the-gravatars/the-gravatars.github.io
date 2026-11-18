@@ -61,3 +61,7 @@ footer{background:#080d1a}
 .visitor-list{columns:2;column-gap:44px;padding-left:20px;color:#b6c1da;line-height:2}
 .visitor-list li{break-inside:avoid}
 @media(max-width:650px){.roster-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.visitor-list{columns:1}}
+
+/* Public email links on people page */
+.member-email{display:block;margin-top:6px;font-size:12px;line-height:1.5;overflow-wrap:anywhere;color:#aebfff!important}
+.profile-email{margin:8px 0 0;font-size:14px;overflow-wrap:anywhere}
