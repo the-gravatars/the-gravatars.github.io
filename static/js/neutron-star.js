@@ -7,10 +7,18 @@
   const W = 760, H = 760, cx = 380, cy = 378, R = 119;
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', e => { reduced = e.matches; });
-  let start = performance.now();
+  // Mobile browsers can struggle with a 760px canvas at full resolution.
+  // Keep logical coordinates unchanged while reducing the backing buffer on phones.
+  const mobile = window.matchMedia('(max-width: 650px)').matches;
+  const renderScale = mobile ? 0.63 : 1;
+  canvas.width = Math.round(W * renderScale);
+  canvas.height = Math.round(H * renderScale);
+  const start = performance.now();
+  let rafId = null;
   const TAU = Math.PI * 2;
   function frame(now) {
     const t = reduced ? 0 : (now - start) / 1000;
+    ctx.setTransform(renderScale, 0, 0, renderScale, 0, 0);
     ctx.clearRect(0, 0, W, H);
     // Subtle warped-coordinate contours: a visualization, not a numerical GR solution.
     ctx.save();
@@ -117,9 +125,16 @@
     ctx.restore();
     ctx.beginPath();ctx.arc(cx,cy,R*pulse,0,TAU);
     ctx.strokeStyle='rgba(160,222,255,.46)';ctx.lineWidth=1.5;ctx.stroke();
-    if (!reduced) requestAnimationFrame(frame);
+    if (!reduced && !document.hidden) rafId = requestAnimationFrame(frame);
+    else rafId = null;
   }
-  canvas.width=W; canvas.height=H;
-  requestAnimationFrame(frame);
-  document.addEventListener('visibilitychange', () => { if (!document.hidden && !reduced) requestAnimationFrame(frame); });
+  rafId = requestAnimationFrame(frame);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      rafId = null;
+    } else if (rafId === null) {
+      rafId = requestAnimationFrame(frame);
+    }
+  });
 })();
