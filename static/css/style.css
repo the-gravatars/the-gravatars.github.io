@@ -83,3 +83,48 @@ footer{background:#080d1a}
 /* Larger, more readable primary navigation */
 .nav-links a{font-size:16px;font-weight:600;letter-spacing:.01em}
 @media(max-width:650px){.nav-links a{font-size:18px}}
+
+/* Mobile-first refinements: readable hero, centered pulsar, no sideways overflow. */
+html,body{max-width:100%;overflow-x:clip}
+@media(max-width:650px){
+ .shell{width:calc(100% - 36px)}
+ .site-header{width:100%}
+ .nav{gap:12px}
+ .brand{min-width:0;font-size:15px;letter-spacing:.07em}
+ .brand-sub{font-size:8px}
+ .menu-toggle{flex-shrink:0;cursor:pointer;padding:8px 10px}
+ .nav-links{z-index:30;box-shadow:0 16px 24px rgba(0,0,0,.35)}
+ .nav-links a{display:block;padding:5px 0}
+ .hero{min-height:0;overflow:hidden}
+ .hero-content{padding-top:133px;padding-bottom:0}
+ .hero h1{font-size:clamp(43px,11vw,62px);line-height:1.07;letter-spacing:-.065em;margin:22px 0}
+ .hero-lead{font-size:15px;line-height:1.65;max-width:100%}
+ .hero-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:24px}
+ .hero-actions .button{min-width:0;justify-content:center;text-align:center;padding:13px 10px;font-size:12px;line-height:1.35;gap:0}
+ .hero-actions .button:first-child{grid-column:1/-1}
+ .hero-bottom{margin-top:0;padding:0 0 30px;font-size:9px;line-height:1.6}
+ .neutron-star-art{position:relative;inset:auto;width:min(100vw,440px);height:auto;aspect-ratio:1;margin:0 auto -10px;opacity:.95;transform:none}
+ .neutron-star-art canvas{width:100%;height:100%}
+ .section{padding-top:64px;padding-bottom:75px}
+ .section-heading{margin-bottom:28px}
+ .section h2{font-size:clamp(33px,9vw,42px);overflow-wrap:break-word}
+ .section-heading>p{font-size:15px}
+ .research-grid{grid-template-columns:1fr}
+ .research-card{min-height:240px;padding:24px}
+ .page-hero{padding:130px 0 55px}
+ .page-hero h1{font-size:clamp(40px,12vw,60px);overflow-wrap:anywhere}
+ .page-content{padding-top:45px;padding-bottom:70px}
+ .page-content h2{font-size:26px}
+ .profile{gap:24px;margin-bottom:48px}
+ .profile-photo-wrap{width:min(100%,340px)}
+ .roster-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ .member-card h4{overflow-wrap:anywhere}
+ .footer-grid{padding:42px 0;gap:16px}
+}
+@media(max-width:360px){
+ .hero h1{font-size:40px}
+ .hero-actions{grid-template-columns:1fr}
+ .hero-actions .button:first-child{grid-column:auto}
+ .roster-grid{grid-template-columns:1fr 1fr;gap:12px}
+ .member-placeholder span{font-size:32px}
+}
