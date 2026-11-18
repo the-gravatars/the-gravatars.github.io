@@ -57,31 +57,10 @@
     glow.addColorStop(1, 'rgba(35,69,150,0)');
     ctx.fillStyle = glow;
     ctx.beginPath(); ctx.arc(cx, cy, 240, 0, TAU); ctx.fill();
-    // Dipolar magnetospheric field lines behind the star, sweeping with the magnetic axis.
-    ctx.save();
-    ctx.translate(cx, cy);
-    const magneticTilt = -.48 + .22 * Math.sin(t * 3.5);
-    ctx.rotate(magneticTilt);
-    for (const side of [-1, 1]) {
-      for (let k = 0; k < 11; k++) {
-        const extent = 150 + k * 19;
-        const polar = 28 + k * 2.5;
-        ctx.beginPath();
-        ctx.moveTo(side * polar, -R * .83);
-        ctx.bezierCurveTo(side * extent, -extent * .95,
-                          side * extent * 1.12, extent * .9,
-                          side * polar, R * .83);
-        const alpha = .31 - k * .015;
-        ctx.strokeStyle = 'rgba(105,192,255,' + alpha + ')';
-        ctx.lineWidth = k % 4 === 0 ? 1.6 : .85;
-        ctx.stroke();
-      }
-    }
-    ctx.restore();
     // Pulsar beams from the magnetic poles, inclined to the rotation axis.
     ctx.save();
     ctx.translate(cx, cy);
-    ctx.rotate(-.48 + .22 * Math.sin(t * 3.5));
+    ctx.rotate(-.56 + .17 * Math.sin(t * 1.5));
     for (const sign of [-1, 1]) {
       const beam = ctx.createLinearGradient(0, sign * 68, 0, sign * 330);
       beam.addColorStop(0, 'rgba(133,221,255,.30)');
@@ -91,18 +70,18 @@
     }
     ctx.restore();
     // The star: atmospheric limb, luminous surface, gravitational limb darkening.
-    const pulse = 1 + .009 * Math.sin(t * 9.2);
+    const pulse = 1 + .017 * Math.sin(t * 4.6);
     ctx.save(); ctx.translate(cx, cy); ctx.scale(pulse, pulse);
     ctx.beginPath(); ctx.arc(0, 0, R, 0, TAU); ctx.clip();
     const surface = ctx.createRadialGradient(-42, -48, 7, 16, 12, 157);
-    surface.addColorStop(0, '#fff0f3');
-    surface.addColorStop(.21, '#f7b4ce');
-    surface.addColorStop(.43, '#b95098');
-    surface.addColorStop(.73, '#572467');
+    surface.addColorStop(0, '#d5f4ff');
+    surface.addColorStop(.21, '#8ed1f0');
+    surface.addColorStop(.43, '#4e8cc5');
+    surface.addColorStop(.73, '#1b437f');
     surface.addColorStop(1, '#050d2d');
     ctx.fillStyle = surface; ctx.fillRect(-R,-R,2*R,2*R);
     // Rotating surface bands, with curvature from projected spherical coordinates.
-    const spin = t * 5.0;
+    const spin = t * 1.25;
     for (let band = -8; band <= 8; band++) {
       const lat = band / 9 * Math.PI / 2;
       ctx.beginPath();
@@ -127,19 +106,6 @@
       const size = (4 + (i % 5) * 2) * (.3 + front * .7);
       ctx.beginPath(); ctx.ellipse(x,y,size,size*.5,-.4,0,TAU);
       ctx.fillStyle = i%3===0 ? 'rgba(219,248,255,.23)' : 'rgba(8,38,90,.19)';
-      ctx.fill();
-    }
-    // Fine-grained luminous crustal texture, inspired by the reference.
-    for (let i = 0; i < 190; i++) {
-      const lat = Math.asin(2 * ((i * .61803398875) % 1) - 1);
-      const lon = spin + i * 2.3999632297;
-      const visibility = Math.cos(lon);
-      if (visibility <= 0) continue;
-      const x = R * Math.cos(lat) * Math.sin(lon);
-      const y = R * Math.sin(lat) * .93;
-      const rr = .6 + (i % 5) * .32;
-      ctx.beginPath();ctx.arc(x,y,rr,0,TAU);
-      ctx.fillStyle = i%4===0 ? 'rgba(255,240,195,.8)' : i%3===0 ? 'rgba(255,187,232,.65)' : 'rgba(37,9,70,.45)';
       ctx.fill();
     }
     // Fixed illumination keeps the rotating texture legible.
