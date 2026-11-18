@@ -81,7 +81,7 @@
     surface.addColorStop(1, '#050d2d');
     ctx.fillStyle = surface; ctx.fillRect(-R,-R,2*R,2*R);
     // Rotating surface bands, with curvature from projected spherical coordinates.
-    const spin = t * 1.25;
+    const spin = t * 3.75;
     for (let band = -8; band <= 8; band++) {
       const lat = band / 9 * Math.PI / 2;
       ctx.beginPath();
