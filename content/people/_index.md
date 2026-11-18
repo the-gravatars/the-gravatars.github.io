@@ -11,6 +11,7 @@ description: "Meet the researchers behind the Gravatars Group."
     <span class="profile-role">GROUP LEAD</span>
     <h2>Andrew L. Miller</h2>
     <p class="profile-position">Associate Professor · ICTP-AP / UCAS</p>
+    <p class="profile-email"><a href="mailto:andrew.miller.ligo@ucas.ac.cn">andrew.miller.ligo@ucas.ac.cn</a></p>
     <p>Research areas: continuous and long-duration gravitational waves, neutron stars, compact binaries, primordial black holes, ultralight dark matter, and fundamental physics.</p>
     <div class="profile-links">
       <a href="https://andrew-l-miller.github.io/" target="_blank" rel="noopener noreferrer">Personal website ↗</a>
@@ -23,8 +24,8 @@ description: "Meet the researchers behind the Gravatars Group."
 <section class="roster-section">
   <h3>Postdocs</h3>
   <div class="roster-grid">
-    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Debtroy Das"><span>DD</span></div><h4>Debtroy Das</h4></article>
-    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Kiet Pham"><span>KP</span></div><h4>Kiet Pham</h4></article>
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Debtroy Das"><span>DD</span></div><h4>Debtroy Das</h4><a class="member-email" href="mailto:ddebtroy22@m.fudan.edu.cn">ddebtroy22@m.fudan.edu.cn</a></article>
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Kiet Pham"><span>KP</span></div><h4>Kiet Pham</h4><a class="member-email" href="mailto:kiet.pham@ligo.org">kiet.pham@ligo.org</a></article>
   </div>
 </section>
 
@@ -38,7 +39,7 @@ description: "Meet the researchers behind the Gravatars Group."
 <section class="roster-section">
   <h3>Research Students</h3>
   <div class="roster-grid">
-    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Ayush Hazarika"><span>AH</span></div><h4>Ayush Hazarika</h4></article>
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Ayush Hazarika"><span>AH</span></div><h4>Ayush Hazarika</h4><a class="member-email" href="mailto:ayush.hazarika@ligo.org">ayush.hazarika@ligo.org</a></article>
     <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Hang Yang"><span>HY</span></div><h4>Hang Yang</h4></article>
   </div>
 </section>
@@ -53,7 +54,7 @@ description: "Meet the researchers behind the Gravatars Group."
 <section class="roster-section">
   <h3>Past Visiting Scientists</h3>
   <div class="roster-grid">
-    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Veronica Vazquez-Aceves"><span>VV</span></div><h4>Veronica Vazquez-Aceves</h4></article>
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Veronica Vazquez-Aceves"><span>VV</span></div><h4>Veronica Vazquez-Aceves</h4><a class="member-email" href="mailto:veronica@pku.edu.cn">veronica@pku.edu.cn</a></article>
   </div>
 </section>
 
