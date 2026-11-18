@@ -32,7 +32,7 @@ description: "Meet the researchers behind the Gravatars Group."
 <section class="roster-section">
   <h3>PhD Students</h3>
   <div class="roster-grid">
-    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Charchit Kumar Sethi"><span>CK</span></div><h4>Charchit Kumar Sethi</h4></article>
+    <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Charchit Kumar Sethi"><span>CK</span></div><h4>Charchit Kumar Sethi</h4><a class="member-email" href="mailto:sethicharchit5@mails.ucas.ac.cn">sethicharchit5@mails.ucas.ac.cn</a></article>
   </div>
 </section>
 
