@@ -24,7 +24,7 @@ description: "Meet the researchers behind the Gravatars Group."
 <section class="roster-section">
   <h3>Postdocs</h3>
   <div class="roster-grid">
-    <article class="member-card"><img class="member-photo" src="/images/Debtroy.jpeg" alt="Portrait of Debtroy Das" loading="lazy" style="width:200px;height:200px;object-fit:cover;object-position:center top;border-radius:12px;"><h4>Debtroy Das</h4><a class="member-email" href="mailto:ddebtroy22@m.fudan.edu.cn">ddebtroy22@m.fudan.edu.cn</a></article>
+    <article class="member-card"><img class="member-photo" src="/images/Debtroy.jpeg" alt="Portrait of Debtroy Das" loading="lazy" style="width:160px;height:160px;object-fit:cover;object-position:center top;border-radius:12px;"><h4>Debtroy Das</h4><a class="member-email" href="mailto:ddebtroy22@m.fudan.edu.cn">ddebtroy22@m.fudan.edu.cn</a></article>
     <article class="member-card"><div class="member-placeholder" role="img" aria-label="Portrait placeholder for Kiet Pham"><span>KP</span></div><h4>Kiet Pham</h4><a class="member-email" href="mailto:kiet.pham@ligo.org">kiet.pham@ligo.org</a></article>
   </div>
 </section>
